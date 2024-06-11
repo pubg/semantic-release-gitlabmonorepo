@@ -1,5 +1,6 @@
 {
-  "name": "@pubg/semantic-release-gitlabmonorepo",
+  "name": "@pubgcorp/semantic-release-gitlabmonorepo",
+  "version": "1.0.0",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "exports": "./dist/index.js",
@@ -37,8 +38,10 @@
     "CHANGELOG.md"
   ],
   "publishConfig": {
-    "access": "public",
-    "registry": "https://npm.pkg.github.com/"
+    "access": "public"
   },
-  "version": "1.0.0"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pubg/semantic-release-gitlabmonorepo.git"
+  }
 }
