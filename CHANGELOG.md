@@ -1,3 +1,10 @@
+## [1.0.6](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.0.5...v1.0.6) (2024-06-11)
+
+
+### Bug Fixes
+
+* refactoring ([207a237](https://github.com/pubg/semantic-release-gitlabmonorepo/commit/207a23747641be184e1b8f294815abf147a43b8b))
+
 ## [1.0.5](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.0.4...v1.0.5) (2024-06-11)
 
 
