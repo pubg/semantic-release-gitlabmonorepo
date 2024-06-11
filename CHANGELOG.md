@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.0.1...v1.0.2) (2024-06-11)
+
+
+### Bug Fixes
+
+* package config ([8c9653e](https://github.com/pubg/semantic-release-gitlabmonorepo/commit/8c9653e7b63b1d295eca270f5f6f89a9b53c93ba))
+
 ## [1.0.1](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.0.0...v1.0.1) (2024-06-11)
 
 
