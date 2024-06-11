@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.0.4...v1.0.5) (2024-06-11)
+
+
+### Bug Fixes
+
+* filepath ([e5bfbf6](https://github.com/pubg/semantic-release-gitlabmonorepo/commit/e5bfbf60e88a1333669755500182b8fc4ac0819e))
+
 ## [1.0.4](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.0.3...v1.0.4) (2024-06-11)
 
 
