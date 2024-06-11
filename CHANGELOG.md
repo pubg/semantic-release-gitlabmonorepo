@@ -1,3 +1,10 @@
+## [1.0.7](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.0.6...v1.0.7) (2024-06-11)
+
+
+### Bug Fixes
+
+* template ([5128b3b](https://github.com/pubg/semantic-release-gitlabmonorepo/commit/5128b3b7010ed787b722b6fc5f748be67e92a87f))
+
 ## [1.0.6](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.0.5...v1.0.6) (2024-06-11)
 
 
