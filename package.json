@@ -1,0 +1,43 @@
+{
+  "name": "@pubg/semantic-release-gitlabmonorepo",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "exports": "./dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "ts-patch install && typia patch"
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.0",
+    "@semantic-release/exec": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/npm": "^12.0.1",
+    "@semantic-release/release-notes-generator": "^14.0.0",
+    "@types/git-url-parse": "^9.0.3",
+    "@types/lodash-es": "^4.17.12",
+    "semantic-release": "^24.0.0",
+    "ts-node": "^10.9.2",
+    "ts-patch": "^3.2.0",
+    "typescript": "^5.4.2",
+    "@types/node": "^20.14.2"
+  },
+  "dependencies": {
+    "axios": "^1.7.2",
+    "git-url-parse": "^14.0.0",
+    "lodash-es": "^4.17.21",
+    "typia": "^6.0.6",
+    "url-join": "^5.0.0"
+  },
+  "files": [
+    "dist/",
+    "package.json",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.pkg.github.com/"
+  }
+}

@@ -1,2 +1,13 @@
 # semantic-release-gitlabmonorepo
-PUBG DevOps Managed Repository
+
+To install dependencies:
+
+```bash
+npm install
+```
+
+To build:
+
+```bash
+npm run build
+```
