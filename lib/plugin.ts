@@ -36,7 +36,7 @@ export function resolvePluginConfig(userConfig: UserConfig, context: VerifyCondi
         throw new Error('GITLAB_TOKEN or GITLAB_ACCESS_TOKEN env is required');
     }
     const assets = userConfig.assets || [];
-    const commitTitle = userConfig.commitTitle || 'chore(release): ${nextRelease.version} [skip ci]';
+    const commitTitle = userConfig.commitTitle || 'chore(release): ${nextRelease.name} [skip ci]';
 
     const pluginConfig: PluginConfig = {
         gitlabBaseUrl: urlJoin(gitlabUrl, 'api/v4', 'projects', projectId),
