@@ -32,7 +32,7 @@
     "url-join": "^5.0.0"
   },
   "files": [
-    "dist/",
+    "dist/*",
     "package.json",
     "README.md",
     "CHANGELOG.md"
