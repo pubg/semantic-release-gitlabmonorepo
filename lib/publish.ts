@@ -5,6 +5,7 @@ import path from "node:path";
 import os from "node:os";
 import axios, {AxiosError} from "axios";
 import urlJoin from "url-join";
+import {execSync} from "child_process";
 
 export async function publish(userConfig: UserConfig, context: PrepareContext): Promise<void> {
     const config = resolvePluginConfig(userConfig, context);
@@ -19,6 +20,7 @@ export async function publish(userConfig: UserConfig, context: PrepareContext): 
         commit_message: config.commitTitle,
         actions: [],
     };
+    const repositoryDir = execSync("git rev-parse --show-toplevel", {encoding: "utf-8", cwd: context.cwd}).trim();
     for (const asset of config.assets) {
         const assetPath = resolve(asset.path, context.cwd);
         if (!await fileExists(assetPath)) {
@@ -29,7 +31,7 @@ export async function publish(userConfig: UserConfig, context: PrepareContext): 
 
         body.actions.push({
             action: "update",
-            file_path: asset.path,
+            file_path: path.relative(repositoryDir, assetPath),
             encoding: "text",
             content: assetContent,
         } as never);
@@ -37,9 +39,8 @@ export async function publish(userConfig: UserConfig, context: PrepareContext): 
 
     try {
         const instance = axios.create({});
-        await instance.get(urlJoin(config.gitlabBaseUrl, 'repository', 'commits'), {
+        await instance.post(urlJoin(config.gitlabBaseUrl, 'repository', 'commits'), body, {
             headers: {"PRIVATE-TOKEN": config.gitlabToken, "Content-Type": "application/json"},
-            data: JSON.stringify(body),
         });
     } catch (e) {
         if (!(e instanceof AxiosError)) {
