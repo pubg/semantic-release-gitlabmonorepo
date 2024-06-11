@@ -2,7 +2,6 @@ import typia from "typia";
 import type {VerifyConditionsContext} from "semantic-release";
 import {execSync} from "node:child_process";
 import gitUrlParse from 'git-url-parse';
-import {trim, trimEnd} from 'lodash-es';
 import urlJoin from "url-join";
 
 export interface UserConfig {
@@ -50,16 +49,30 @@ export function resolvePluginConfig(userConfig: UserConfig, context: VerifyCondi
 
 function getOriginUrl(context: VerifyConditionsContext): string {
     context.logger.log('Getting origin url via command call $ git remote get-url origin');
-    const buf = execSync('git remote get-url origin', { cwd: context.cwd, encoding: 'utf-8' });
+    const buf = execSync('git remote get-url origin', {cwd: context.cwd, encoding: 'utf-8'});
     return buf.toString().trim();
 }
 
 function getProjectId(origin: string): string {
     const parsed = gitUrlParse(origin);
 
-    // trim start and end "/"
-    // trim end ".git"
-    return trim(trimEnd(parsed.pathname, '.git'), '/');
+    let path = parsed.pathname;
+    // remove the trailing ".git"
+    if (path.endsWith('.git')) {
+        path = path.slice(0, -4);
+    }
+    // remove all leading "/"
+
+    while (path.startsWith('/')) {
+        path = path.slice(1);
+    }
+
+    // remove all trailing "/"
+    while (path.endsWith('/')) {
+        path = path.slice(0, -1);
+    }
+
+    return path;
 }
 
 export const isUserConfig = typia.createIs<UserConfig>();
