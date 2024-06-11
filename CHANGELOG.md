@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.0.2...v1.0.3) (2024-06-11)
+
+
+### Bug Fixes
+
+* modifying string manipulation code ([73a409a](https://github.com/pubg/semantic-release-gitlabmonorepo/commit/73a409ad5a26304778b1f8957c43d3c4d660cd9c))
+
 ## [1.0.2](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.0.1...v1.0.2) (2024-06-11)
 
 
