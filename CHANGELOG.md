@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.0.3...v1.0.4) (2024-06-11)
+
+
+### Bug Fixes
+
+* typo ([b8dde76](https://github.com/pubg/semantic-release-gitlabmonorepo/commit/b8dde761b272a8baaa576715117979ec04240344))
+
 ## [1.0.3](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.0.2...v1.0.3) (2024-06-11)
 
 
