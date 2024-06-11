@@ -3,6 +3,7 @@ import type {VerifyConditionsContext} from "semantic-release";
 import {execSync} from "node:child_process";
 import gitUrlParse from 'git-url-parse';
 import urlJoin from "url-join";
+import axios, {type AxiosInstance, type InternalAxiosRequestConfig} from "axios";
 
 export interface UserConfig {
     gitlabUrl: string | undefined;
@@ -73,6 +74,34 @@ function getProjectId(origin: string): string {
     }
 
     return path;
+}
+
+export function newAxiosInstance(config: PluginConfig): AxiosInstance {
+    const instance = axios.create({});
+    // do not throw axios error
+    instance.interceptors.request.use(
+        async (request: InternalAxiosRequestConfig): Promise<InternalAxiosRequestConfig> => {
+            request.headers.set('PRIVATE-TOKEN', config.gitlabToken);
+            request.headers.set('Content-Type', 'application/json');
+            return request;
+        },
+        async (error: any) => {
+            if (error instanceof axios.AxiosError) {
+                return error;
+            } else {
+                return Promise.reject(error);
+            }
+        });
+
+    // do not throw axios error
+    instance.interceptors.response.use(undefined, async (error: any) => {
+        if (error instanceof axios.AxiosError) {
+            return error;
+        } else {
+            return Promise.reject(error);
+        }
+    });
+    return instance;
 }
 
 export const isUserConfig = typia.createIs<UserConfig>();
