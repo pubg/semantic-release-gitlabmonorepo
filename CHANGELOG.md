@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.0.7...v1.1.0) (2024-06-12)
+
+
+### Features
+
+* add retries to push commit ([6494a9f](https://github.com/pubg/semantic-release-gitlabmonorepo/commit/6494a9fa14313dc00ac9b6544318c768a6aa5f30))
+
 ## [1.0.7](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.0.6...v1.0.7) (2024-06-11)
 
 
