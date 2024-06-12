@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.2.0...v1.2.1) (2024-06-12)
+
+
+### Bug Fixes
+
+* add missed file ([2bc0f27](https://github.com/pubg/semantic-release-gitlabmonorepo/commit/2bc0f271cbc47fa7de454455107981528ecb2def))
+
 # [1.2.0](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.1.3...v1.2.0) (2024-06-12)
 
 
