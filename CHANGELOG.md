@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.1.3...v1.2.0) (2024-06-12)
+
+
+### Features
+
+* add helper cli ([fb28a0e](https://github.com/pubg/semantic-release-gitlabmonorepo/commit/fb28a0e477ffb5e65d2c11b834c6a23119c65741))
+
 ## [1.1.3](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.1.2...v1.1.3) (2024-06-12)
 
 
