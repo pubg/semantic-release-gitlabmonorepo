@@ -80,15 +80,21 @@ function isAffordableError(error: AxiosError, context: PublishContext): boolean 
 async function makeCommitRequestBody(config: PluginConfig, context: PublishContext) {
     const publishConfig = resolvePublishConfig();
 
-    const commitMessage = template(config.commitTitle)({
-        branch: context.branch,
+    const templateVariables = {
+        branch: context.branch.name,
         lastRelease: context.lastRelease,
-        nextRelease: context.nextRelease
-    });
+        nextRelease: context.nextRelease,
+        commit: {
+            short: publishConfig.commitSha.substring(0, 8),
+            full: publishConfig.commitSha,
+        }
+    };
+    const commitMessage = template(config.commitTitle)(templateVariables);
+    const branchName = template(config.branchName)(templateVariables);
 
     // https://docs.gitlab.com/ee/api/commits.html#create-a-commit-with-multiple-files-and-actions
     const body = {
-        branch: `assets/${publishConfig.commitSha.substring(0, 8)}`,
+        branch: branchName,
         start_branch: context.branch.name,
         commit_message: commitMessage,
         actions: [],

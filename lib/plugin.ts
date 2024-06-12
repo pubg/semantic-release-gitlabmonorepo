@@ -10,6 +10,7 @@ export interface UserConfig {
     projectId: string | undefined;
     assets: Assets[] | undefined;
     commitTitle: string | undefined;
+    branchName: string | undefined;
 }
 
 export interface Assets {
@@ -22,6 +23,7 @@ export interface PluginConfig {
     gitlabToken: string;
     assets: Assets[];
     commitTitle: string;
+    branchName: string;
 }
 
 export function resolvePluginConfig(userConfig: UserConfig, context: VerifyConditionsContext): PluginConfig {
@@ -37,6 +39,7 @@ export function resolvePluginConfig(userConfig: UserConfig, context: VerifyCondi
     }
     const assets = userConfig.assets || [];
     const commitTitle = userConfig.commitTitle || 'chore(release): ${nextRelease.name} [skip ci]';
+    const branchName = userConfig.branchName || 'assets/${commit.short}';
 
     const pluginConfig: PluginConfig = {
         gitlabBaseUrl: urlJoin(gitlabUrl, 'api/v4', 'projects', projectId),
@@ -44,6 +47,7 @@ export function resolvePluginConfig(userConfig: UserConfig, context: VerifyCondi
         gitlabToken: gitlabToken,
         assets: assets,
         commitTitle: commitTitle,
+        branchName: branchName,
     }
     return assertPluginConfig(pluginConfig);
 }
