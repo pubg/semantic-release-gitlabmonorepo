@@ -85,7 +85,7 @@ async function makeCommitRequestBody(config: PluginConfig, context: PublishConte
         lastRelease: context.lastRelease,
         nextRelease: context.nextRelease,
         commit: {
-            short: publishConfig.commitSha.substring(0, 8),
+            short: publishConfig.commitSha.substring(0, 7),
             full: publishConfig.commitSha,
         }
     };
