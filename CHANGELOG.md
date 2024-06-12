@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.1.0...v1.1.1) (2024-06-12)
+
+
+### Bug Fixes
+
+* add branch name template ([cdffb62](https://github.com/pubg/semantic-release-gitlabmonorepo/commit/cdffb62cfbe4df095a3c2d62660bed773a7dd6f0))
+
 # [1.1.0](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.0.7...v1.1.0) (2024-06-12)
 
 
