@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.1.2...v1.1.3) (2024-06-12)
+
+
+### Bug Fixes
+
+* short commit length ([5687ba0](https://github.com/pubg/semantic-release-gitlabmonorepo/commit/5687ba0ae9b97ba80a91b4c37c62d21456b3da04))
+
 ## [1.1.2](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.1.1...v1.1.2) (2024-06-12)
 
 
