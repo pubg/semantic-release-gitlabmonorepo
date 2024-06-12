@@ -3,7 +3,7 @@ import type {PublishContext} from "semantic-release";
 import fs from "node:fs/promises";
 import path from "node:path";
 import os from "node:os";
-import {AxiosError, type AxiosResponse} from "axios";
+import {AxiosError, type AxiosInstance, type AxiosResponse} from "axios";
 import urlJoin from "url-join";
 import {execSync} from "child_process";
 import {template} from "lodash-es";
@@ -19,35 +19,42 @@ export async function publish(userConfig: UserConfig, context: PublishContext): 
     context.logger.log(`Extract ${body.actions.length} assets.`);
 
     const instance = newAxiosInstance(config);
-    const response: AxiosResponse | AxiosError = await instance.post(urlJoin(config.gitlabBaseUrl, 'repository', 'commits'), body);
+    const maxRetries = 5;
+    for (let i = 0; i < maxRetries; i++) {
+        const result = await pushCommit(instance, body, config, context);
+        if (result == PushCommitResult.Success) {
+            break;
+        } else {
+            // Append assets to existing branch
+            body.start_branch = body.branch;
+        }
+    }
+    context.logger.log(`Published assets to ${body.branch} successfully .`);
+}
 
+enum PushCommitResult {
+    Success,
+    AffordError,
+}
+
+async function pushCommit(instance: AxiosInstance, body: any, config: PluginConfig, context: PublishContext): Promise<PushCommitResult> {
+    const response: AxiosResponse | AxiosError = await instance.post(urlJoin(config.gitlabBaseUrl, 'repository', 'commits'), body);
     if (response instanceof AxiosError) {
-        if (!isDuplicatedBranchError(response)) {
+        if (isAffordableError(response, context)) {
+            return PushCommitResult.AffordError;
+        } else {
             context.logger.error(`Failed to commit assets: ${JSON.stringify(response.response?.data)}, Status ${response.response?.status}`);
             throw response;
         }
-
-        // Append assets to existing branch
-        body.start_branch = body.branch;
-
-        const response2: AxiosResponse | AxiosError = await instance.post(urlJoin(config.gitlabBaseUrl, 'repository', 'commits'), body);
-        if (response2 instanceof AxiosError) {
-            context.logger.error(`Failed to commit assets: ${JSON.stringify(response2.response?.data)}, Status ${response2.response?.status}`);
-            throw response2;
-        }
-        if (response2.status !== 201) {
-            context.logger.error(`Failed to commit assets: ${JSON.stringify(response2.data)}, Status ${response.status}`);
-            throw new Error(`Failed to commit assets: ${JSON.stringify(response2.data)}, Status ${response.status}`);
-        }
-        return;
     }
     if (response.status !== 201) {
         context.logger.error(`Failed to commit assets: ${JSON.stringify(response.data)}, Status ${response.status}`);
         throw new Error(`Failed to commit assets: ${JSON.stringify(response.data)}, Status ${response.status}`);
     }
+    return PushCommitResult.Success;
 }
 
-function isDuplicatedBranchError(error: AxiosError): boolean {
+function isAffordableError(error: AxiosError, context: PublishContext): boolean {
     if (!error.response) {
         return false;
     }
@@ -66,7 +73,8 @@ function isDuplicatedBranchError(error: AxiosError): boolean {
     if (typeof error.response.data.message !== "string") {
         return false;
     }
-    return error.response.data.message.includes("already exists.");
+    context.logger.log(`Error message: ${error.response.data.message}`);
+    return true;
 }
 
 async function makeCommitRequestBody(config: PluginConfig, context: PublishContext) {
@@ -114,7 +122,7 @@ function resolvePublishConfig(): PublishConfig {
     return {repositoryDir, commitSha};
 }
 
-export async function fileExists(path: string): Promise<boolean> {
+async function fileExists(path: string): Promise<boolean> {
     try {
         await fs.access(path, fs.constants.F_OK);
         return true;
@@ -123,7 +131,7 @@ export async function fileExists(path: string): Promise<boolean> {
     }
 }
 
-export function resolve(filePath: string, cwd: string | undefined): string {
+function resolve(filePath: string, cwd: string | undefined): string {
     if (filePath.startsWith("~/")) {
         return path.resolve(os.homedir(), filePath.substring(2));
     } else {
