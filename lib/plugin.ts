@@ -28,7 +28,7 @@ export interface PluginConfig {
 
 export function resolvePluginConfig(userConfig: UserConfig, context: VerifyConditionsContext): PluginConfig {
     assertUserConfig(userConfig);
-    const gitlabUrl = userConfig.gitlabUrl || context.env['CI_SERVER_URL'] || context.env['CI_SERVER_URL'] || 'https://gitlab.com';
+    const gitlabUrl = userConfig.gitlabUrl || context.env['CI_SERVER_URL'] || 'https://gitlab.com';
     let projectId = userConfig.projectId || context.env['CI_PROJECT_ID'] || context.env['CI_PROJECT_PATH'] || getProjectId(getOriginUrl(context));
     if (projectId.includes('/')) {
         projectId = encodeURIComponent(projectId);
