@@ -26,12 +26,18 @@
   },
   "dependencies": {
     "axios": "^1.7.2",
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
     "git-url-parse": "^14.0.0",
     "lodash-es": "^4.17.21",
     "typia": "^6.0.6",
     "url-join": "^5.0.0"
   },
+  "bin": {
+    "semantic-release-gitlabmonorepo-helper": "./dist/cli.js"
+  },
   "files": [
+    "bin/*",
     "dist/*",
     "lib/*",
     "package.json",

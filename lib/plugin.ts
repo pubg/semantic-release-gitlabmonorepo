@@ -6,11 +6,11 @@ import urlJoin from "url-join";
 import axios, {type AxiosInstance, type InternalAxiosRequestConfig} from "axios";
 
 export interface UserConfig {
-    gitlabUrl: string | undefined;
-    projectId: string | undefined;
-    assets: Assets[] | undefined;
-    commitTitle: string | undefined;
-    branchName: string | undefined;
+    gitlabUrl?: string | undefined;
+    projectId?: string | undefined;
+    assets?: Assets[] | undefined;
+    commitTitle?: string | undefined;
+    branchName?: string | undefined;
 }
 
 export interface Assets {
@@ -52,13 +52,12 @@ export function resolvePluginConfig(userConfig: UserConfig, context: VerifyCondi
     return assertPluginConfig(pluginConfig);
 }
 
-function getOriginUrl(context: VerifyConditionsContext): string {
-    context.logger.log('Getting origin url via command call $ git remote get-url origin');
+export function getOriginUrl(context: VerifyConditionsContext): string {
     const buf = execSync('git remote get-url origin', {cwd: context.cwd, encoding: 'utf-8'});
     return buf.toString().trim();
 }
 
-function getProjectId(origin: string): string {
+export function getProjectId(origin: string): string {
     const parsed = gitUrlParse(origin);
 
     let path = parsed.pathname;
