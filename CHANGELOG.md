@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.1.1...v1.1.2) (2024-06-12)
+
+
+### Bug Fixes
+
+* Update readme and delete duplicate code ([b60f830](https://github.com/pubg/semantic-release-gitlabmonorepo/commit/b60f83056d39b89a5caa09cc09eb669378808932))
+
 ## [1.1.1](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.1.0...v1.1.1) (2024-06-12)
 
 
