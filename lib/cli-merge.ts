@@ -6,7 +6,7 @@ import {AxiosError, type AxiosResponse} from "axios";
 export function addMergeCommand(command: Command): void {
     command
         .command('merge')
-        .description('Merge the pull request')
+        .description('Merge the request')
         .option('--merge-request-iid <mergeRequestIid>', 'Merge request iid')
         .option('--project-id [projectId]', 'Project id')
         .option('--gitlab-url [gitlabUrl]', 'Gitlab url')
