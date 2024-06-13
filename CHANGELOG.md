@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.2.1...v1.2.2) (2024-06-13)
+
+
+### Bug Fixes
+
+* Add create merge request command ([074c008](https://github.com/pubg/semantic-release-gitlabmonorepo/commit/074c008d761cd878e5594dc39d9f098c4f45526c))
+
 ## [1.2.1](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.2.0...v1.2.1) (2024-06-12)
 
 
