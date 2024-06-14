@@ -36,9 +36,9 @@ export async function createAction(options: CreateOptions) {
     if (response instanceof AxiosError) {
         throw response;
     }
-    if (response.status / 100 === 2) {
+    if (response.status / 100 !== 2) {
         console.error(`Failed to create merge request: ${JSON.stringify(response.data)}, Status ${response.status}`);
-        throw new Error(`Failed to accept merge request`);
+        process.exit(1);
     }
     console.log(JSON.stringify(response.data));
 }
