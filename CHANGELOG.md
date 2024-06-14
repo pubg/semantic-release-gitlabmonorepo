@@ -1,3 +1,10 @@
+## [1.2.4](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.2.3...v1.2.4) (2024-06-14)
+
+
+### Bug Fixes
+
+* change http method ([56d2c7d](https://github.com/pubg/semantic-release-gitlabmonorepo/commit/56d2c7d65ef7d9dc3318a3b9698b0334b26fc0a0))
+
 ## [1.2.3](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.2.2...v1.2.3) (2024-06-14)
 
 
