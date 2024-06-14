@@ -28,7 +28,7 @@ export async function createAction(options: CreateOptions) {
     const config = resolvePluginConfig({projectId: options.projectId, gitlabUrl: options.gitlabUrl}, fakeContext);
     const instance = newAxiosInstance(config);
 
-    const response: AxiosResponse | AxiosError = await instance.put(urlJoin(config.gitlabBaseUrl, 'merge_requests'), {
+    const response: AxiosResponse | AxiosError = await instance.post(urlJoin(config.gitlabBaseUrl, 'merge_requests'), {
         source_branch: options.sourceBranch,
         target_branch: options.targetBranch,
         title: options.title,
