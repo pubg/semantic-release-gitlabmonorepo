@@ -33,7 +33,7 @@ export async function mergeAction(options: AcceptOptions) {
     if (response instanceof AxiosError) {
         throw response;
     }
-    if (response.status !== 200) {
+    if (response.status / 100 === 2) {
         console.error(`Failed to accept merge request: ${JSON.stringify(response.data)}, Status ${response.status}`);
         throw new Error(`Failed to accept merge request`);
     }
