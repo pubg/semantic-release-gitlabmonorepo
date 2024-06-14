@@ -1,3 +1,10 @@
+## [1.2.5](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.2.4...v1.2.5) (2024-06-14)
+
+
+### Bug Fixes
+
+* check status code ([d02871f](https://github.com/pubg/semantic-release-gitlabmonorepo/commit/d02871f7f74d51e3c8b5926e00fcc0da057e0df1))
+
 ## [1.2.4](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.2.3...v1.2.4) (2024-06-14)
 
 
