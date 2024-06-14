@@ -1,3 +1,10 @@
+## [1.2.7](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.2.6...v1.2.7) (2024-06-14)
+
+
+### Bug Fixes
+
+* update cli success condition ([8dc0b05](https://github.com/pubg/semantic-release-gitlabmonorepo/commit/8dc0b05c3ed3e3e7e59caa83e2a2fa3e0deb12dd))
+
 ## [1.2.6](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.2.5...v1.2.6) (2024-06-14)
 
 
