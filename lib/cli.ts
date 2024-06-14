@@ -3,10 +3,12 @@ import {Command} from "commander";
 import {addMergeCommand} from "./cli-merge.js";
 import chalk from "chalk";
 import {addCreateCommand} from "./cli-create.js";
+import {addListCommand} from "./cli-list.js";
 
 const command = new Command();
 addMergeCommand(command);
 addCreateCommand(command);
+addListCommand(command);
 
 command.hook('preAction', (thisCommand: Command, actionCommand: Command) => {
     performance.mark('command-preaction');
