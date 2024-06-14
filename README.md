@@ -141,4 +141,27 @@ The `commitTitle` and `branchName` options support the following template variab
 | `commit.full`          | The full commit hash.  |
 | `commit.short`         | The short commit hash. |
 
-![img.png](img.png)
+## Example Monorepo Pipeline
+
+With this plugin, you can run multiple semantic-release in a single pipeline like below.
+
+![img_1.png](img_1.png)
+
+Add a `merge-published-assets` stage at the end of the Gitlab CI to merge the releases of each package.
+
+```yaml
+merge-published-assets:
+  stage: merge-published-assets
+  when: on_success
+  variables:
+  script:
+    - npm install --global @pubgcorp/semantic-release-gitlabmonorepo
+    - export SHORT_COMMIT_HASH=$(git rev-parse --short HEAD)
+    - set -x
+    - semantic-release-gitlabmonorepo-helper create --project-id $CI_PROJECT_ID --source-branch "assets/${SHORT_COMMIT_HASH}" --target-branch $CI_COMMIT_BRANCH --title "chore(release): Merge published assets from ${CI_COMMIT_MESSAGE} [skip ci]"
+    - export MERGE_REQUEST_IID=$(gitbeaker merge-requests create --project-id $CI_PROJECT_ID --source-branch "assets/${SHORT_COMMIT_HASH}" --target-branch $CI_COMMIT_BRANCH --title "Merge published assets from ${CI_COMMIT_MESSAGE} [skip ci]" | jq -r '.iid')
+    - sleep 5
+    - semantic-release-gitlabmonorepo-helper merge --project-id $CI_PROJECT_ID --merge-request-iid $MERGE_REQUEST_IID
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+```
