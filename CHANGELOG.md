@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.2.2...v1.2.3) (2024-06-14)
+
+
+### Bug Fixes
+
+* add list command ([fbedb66](https://github.com/pubg/semantic-release-gitlabmonorepo/commit/fbedb66b712bc623c640836bace661b521354806))
+
 ## [1.2.2](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.2.1...v1.2.2) (2024-06-13)
 
 
