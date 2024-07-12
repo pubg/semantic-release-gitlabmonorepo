@@ -32,6 +32,7 @@ export async function createAction(options: CreateOptions) {
         source_branch: options.sourceBranch,
         target_branch: options.targetBranch,
         title: options.title,
+        description: 'Beep Boop. This is an automated merge request. 🤖🤖🤖',
     });
     if (response instanceof AxiosError) {
         throw response;
