@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.2.7...v1.3.0) (2024-07-12)
+
+
+### Features
+
+* Add ignorePrerelease option ([512598c](https://github.com/pubg/semantic-release-gitlabmonorepo/commit/512598cc4844b467d1d2dec0d6b2db1905708e25))
+
 ## [1.2.7](https://github.com/pubg/semantic-release-gitlabmonorepo/compare/v1.2.6...v1.2.7) (2024-06-14)
 
 
