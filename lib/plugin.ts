@@ -11,6 +11,7 @@ export interface UserConfig {
     assets?: Assets[] | undefined;
     commitTitle?: string | undefined;
     branchName?: string | undefined;
+    ignorePrerelease?: boolean | undefined;
 }
 
 export interface Assets {
@@ -24,22 +25,24 @@ export interface PluginConfig {
     assets: Assets[];
     commitTitle: string;
     branchName: string;
+    ignorePrerelease: boolean;
 }
 
 export function resolvePluginConfig(userConfig: UserConfig, context: VerifyConditionsContext): PluginConfig {
     assertUserConfig(userConfig);
-    const gitlabUrl = userConfig.gitlabUrl || context.env['CI_SERVER_URL'] || 'https://gitlab.com';
-    let projectId = userConfig.projectId || context.env['CI_PROJECT_ID'] || context.env['CI_PROJECT_PATH'] || getProjectId(getOriginUrl(context));
+    const gitlabUrl = userConfig.gitlabUrl ?? context.env['CI_SERVER_URL'] ?? 'https://gitlab.com';
+    let projectId = userConfig.projectId ?? context.env['CI_PROJECT_ID'] ?? context.env['CI_PROJECT_PATH'] ?? getProjectId(getOriginUrl(context));
     if (projectId.includes('/')) {
         projectId = encodeURIComponent(projectId);
     }
-    const gitlabToken: string | undefined = context.env['GITLAB_TOKEN'] || context.env['GITLAB_ACCESS_TOKEN'];
+    const gitlabToken: string | undefined = context.env['GITLAB_TOKEN'] ?? context.env['GITLAB_ACCESS_TOKEN'];
     if (!gitlabToken) {
         throw new Error('GITLAB_TOKEN or GITLAB_ACCESS_TOKEN env is required');
     }
-    const assets = userConfig.assets || [];
-    const commitTitle = userConfig.commitTitle || 'chore(release): ${nextRelease.name} [skip ci]';
-    const branchName = userConfig.branchName || 'assets/${commit.short}';
+    const assets = userConfig.assets ?? [];
+    const commitTitle = userConfig.commitTitle ?? 'chore(release): ${nextRelease.name} [skip ci]';
+    const branchName = userConfig.branchName ?? 'assets/${commit.short}';
+    const ignorePrerelease = userConfig.ignorePrerelease ?? true;
 
     const pluginConfig: PluginConfig = {
         gitlabBaseUrl: urlJoin(gitlabUrl, 'api/v4', 'projects', projectId),
@@ -48,6 +51,7 @@ export function resolvePluginConfig(userConfig: UserConfig, context: VerifyCondi
         assets: assets,
         commitTitle: commitTitle,
         branchName: branchName,
+        ignorePrerelease: ignorePrerelease,
     }
     return assertPluginConfig(pluginConfig);
 }

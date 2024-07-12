@@ -14,6 +14,10 @@ export async function publish(userConfig: UserConfig, context: PublishContext): 
         context.logger.log("No assets defined to publish.");
         return;
     }
+    if (context.branch.prerelease && config.ignorePrerelease) {
+        context.logger.log("Ignoring prerelease branch. Cause of ignorePrerelease is true.");
+        return;
+    }
 
     const body = await makeCommitRequestBody(config, context);
     context.logger.log(`Extract ${body.actions.length} assets.`);
@@ -29,7 +33,7 @@ export async function publish(userConfig: UserConfig, context: PublishContext): 
             body.start_branch = body.branch;
         }
     }
-    context.logger.log(`Published assets to ${body.branch} successfully .`);
+    context.logger.log(`Published assets to ${body.branch} successfully.`);
 }
 
 enum PushCommitResult {
@@ -144,7 +148,7 @@ function resolve(filePath: string, cwd: string | undefined): string {
         if (filePath.startsWith("/")) {
             return path.resolve(filePath);
         } else {
-            return path.resolve(cwd || process.cwd(), filePath);
+            return path.resolve(cwd ?? process.cwd(), filePath);
         }
     }
 }

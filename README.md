@@ -115,13 +115,14 @@ If you are using this plugin on GitLab CI/CD, you don't need to set any environm
 
 ### GitLab Monorepo Plugin Options
 
-| Option        | Description                                            | Default                                                                                  |
-|---------------|--------------------------------------------------------|------------------------------------------------------------------------------------------|
-| `gitlabUrl`   | *Optional.* The GitLab URL.                            | `CI_SERVER_URL` environment variable or `https://gitlab.com`                             |
-| `projectId`   | *Optional.* The GitLab project ID.                     | `CI_PROJECT_ID` or `CI_PROJECT_PATH` environment variable or read from git `origin` url. |
-| `commitTitle` | *Optional.* The commit title message to pushed assets. | `chore(release): ${nextRelease.name} [skip ci]`                                          |
-| `branchName`  | *Optional.* The branch name to merge each assets.      | `assets/${commit.short}`                                                                 |
-| `assets`      | *Optional.* The assets to be pushed.                   | `[]`                                                                                     |
+| Option             | Description                                            | Default                                                                                  |
+|--------------------|--------------------------------------------------------|------------------------------------------------------------------------------------------|
+| `gitlabUrl`        | *Optional.* The GitLab URL.                            | `CI_SERVER_URL` environment variable or `https://gitlab.com`                             |
+| `projectId`        | *Optional.* The GitLab project ID.                     | `CI_PROJECT_ID` or `CI_PROJECT_PATH` environment variable or read from git `origin` url. |
+| `commitTitle`      | *Optional.* The commit title message to pushed assets. | `chore(release): ${nextRelease.name} [skip ci]`                                          |
+| `branchName`       | *Optional.* The branch name to merge each assets.      | `assets/${commit.short}`                                                                 |
+| `assets`           | *Optional.* The assets to be pushed.                   | `[]`                                                                                     |
+| `ignorePrerelease` | *Optional.* Ignore prerelease version.                 | `true`                                                                                   | 
 
 ## commitTitle and branchName template
 
